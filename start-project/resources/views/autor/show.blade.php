@@ -10,12 +10,7 @@
 <input type="text" name="apelido" class="form-control" value="{{ $autor->apelido }}" disabled />
 <label class="mt-3">Nacionalidade</label>
 <input type="text" name="nacionalidade" class="form-control" value="{{ $autor->nacionalidade }}" disabled />
-<label class="mt-3">Data de Nascimento</label>
-<input type="text" name="data_nascimento" class="form-control"
-    value="{{ $autor->data_nascimento ? $autor->data_nascimento->format('d/m/Y') : '' }}" disabled />
 
-<label class="mt-3">Email</label>
-<input type="email" name="email" class="form-control" value="{{ $autor->email }}" disabled />
 
 <a href="{{ route('autor.index') }}" class="btn btn-secondary mt-1">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-arrow-left-circle"

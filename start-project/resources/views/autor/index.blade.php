@@ -16,8 +16,8 @@
         <th>NOME</th>
         <th>APELIDO</th>
         <th>NACIONALIDADE</th>
-        <th>DATA DE NASCIMENTO</th>
-        <th>EMAIL</th>
+        <th>ACTIONS</th>
+      
 
 
     </thead>
@@ -29,11 +29,9 @@
             <td>{{$item->nome}}</td>
             <td>{{$item->apelido}}</td>
             <td>{{$item->nacionalidade}}</td>
-            <td>{{$item->data_nascimento}}</td>
-            <td>{{$item->email}}</td>
-
+            
             <td>
-                <a href="" class="btn btn-info">
+            <a href="{{route('autor.show', $item->id)}}" class="btn btn-info">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF"
                         class="bi bi-info-circle-fill" viewBox="0 0 16 16">
                         <path

@@ -15,6 +15,10 @@ class CreateLivrosTable extends Migration
     {
         Schema::create('livros', function (Blueprint $table) {
             $table->id();
+            $table->string('titulo');
+            $table->unsignedBigInteger('autores_id');
+            $table->text('description');
+            $table->foreign('autores_id')->references('id')->on('autores');
             $table->timestamps();
         });
     }

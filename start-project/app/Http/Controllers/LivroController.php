@@ -12,8 +12,8 @@ class LivroController extends Controller
     public function index()
     {
         // Obtém todos os livros com seus autores associados
-        //$data = Livro::with(['autor'])->get();
-        return view('livro.index'/*, compact('data')*/);
+        $data = Livro::all();
+        return view('livro.index', compact('data'));
     }
 
     /**

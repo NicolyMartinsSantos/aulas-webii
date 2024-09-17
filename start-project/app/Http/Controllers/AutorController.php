@@ -54,8 +54,6 @@ class AutorController extends Controller
         $autor->nome = $request->nome;
         $autor->apelido = $request->apelido;
         $autor->nacionalidade = $request->nacionalidade;
-        $autor->data_nascimento = $request->data_nascimento;
-        $autor->email = $request->email;
         $autor->save();
         return redirect()->route('autor.index');
     }
@@ -102,24 +100,27 @@ class AutorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nome' => 'required|string|max:255',
+{
+    $request->validate([
+        'nome' => 'required|string|max:255',
+        'apelido' => 'nullable|string|max:255',
+        'nacionalidade' => 'nullable|string|max:255',
+    ]);
 
+    $autor = Autores::find($id);
+
+    if ($autor) {
+        $autor->update([
+            'nome' => $request->nome,
+            'apelido' => $request->apelido,
+            'nacionalidade' => $request->nacionalidade,
         ]);
 
-        $autor = Autores::find($id);
-
-        if ($autor) {
-            $autor->update([
-                'nome' => $request->nome,
-            ]);
-
-            return redirect()->route('autor.index')->with('success', 'Autor atualizado com sucesso!');
-        }
-
-        return redirect()->route('autor.index')->with('error', 'Autor não encontrado.');
+        return redirect()->route('autor.index')->with('success', 'Autor atualizado com sucesso!');
     }
+
+    return redirect()->route('autor.index')->with('error', 'Autor não encontrado.');
+}
 
     /**
      * Remove the specified resource from storage.
