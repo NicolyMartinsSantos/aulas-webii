@@ -23,9 +23,10 @@ class LivroController extends Controller
      */
     public function create()
     {
+        return view('livro.create');
         // Obtém todos os autores para preencher o formulário de criação
-        $autores = Autores::orderBy('titulo')->get();
-        return view('livro.create', compact('autores'));
+       // $autores = Autores::orderBy('titulo')->get();
+      //  return view('livro.create', compact('autores'));
     }
 
     /**
@@ -41,10 +42,6 @@ class LivroController extends Controller
         if (isset($autor)) {
             $livro = new Livro();
             $livro->titulo = mb_strtoupper($request->titulo, "UTF-8");
-            $livro->isbn = mb_strtoupper($request->isbn, "UTF-8");
-            $livro->ano_lancamento = $request->ano_lancamento;
-            $livro->resumo = $request->resumo;
-            $livro->genero = $request->genero;
             $livro->descricao = $request->descricao;
             $livro->autor()->associate($autor);
             $livro->save();
@@ -105,11 +102,7 @@ class LivroController extends Controller
 
         if (isset($autor) && isset($livro)) {
             $livro->titulo = mb_strtoupper($request->titulo, "UTF-8");
-            $livro->isbn = mb_strtoupper($request->isbn, "UTF-8");
-            $livro->ano_lancamento = $request->ano_lancamento;
-            $livro->resumo = $request->resumo;
-            $livro->genero = $request->genero;
-            $livro->descricao = $request->descricao;
+            $livro->descrição = $request->descrição;
             $livro->autor()->associate($autor);
             $livro->save();
 

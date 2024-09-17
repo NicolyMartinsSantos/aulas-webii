@@ -18,6 +18,7 @@ class CreateAutoresTable extends Migration
             $table->string('nome');
             $table->string('apelido');
             $table->string('nacionalidade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
