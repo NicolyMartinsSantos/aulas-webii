@@ -11,7 +11,7 @@ class AutorController extends Controller
 {
 
     private $regras = [
-        'name' => 'required|max:20|min:3|unique:eixos',
+        'nome' => 'required|max:20|min:3|unique:autores',
         'description' => 'required|max:300|min:10',
     ];
 
