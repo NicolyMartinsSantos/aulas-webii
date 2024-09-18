@@ -13,6 +13,7 @@ class Autores extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = ['nome', 'apelido', 'nacionalidade'];
     public function livros (){
         return $this->hasMany(Livro::class);
     }

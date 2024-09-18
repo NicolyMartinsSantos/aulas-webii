@@ -13,6 +13,7 @@ class Livro extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = ['titulo', 'description'];
     public function autores(){
         return $this->hasMany(Autores::class);
     }

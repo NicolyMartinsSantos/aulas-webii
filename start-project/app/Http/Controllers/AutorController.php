@@ -85,12 +85,13 @@ class AutorController extends Controller
     {
         $autor = Autores::find($id);
 
-        if ($autor) {
-            return view('autor.edit', compact('autor'));
+        if(isset($autor)){
+            return view('autor.edit', compact(['autor']));
         }
 
         return redirect()->route('autor.index')->with('error', 'Autor não encontrado.');
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -139,4 +140,32 @@ class AutorController extends Controller
 
         return redirect()->route('autor.index')->with('error', 'Autor não encontrado.');
     }
+
+    public function graph()
+    {
+      //  $autores = Autor::with('livro')->orderBy('nome')->get();
+        return "BAHHHHH";
+
+        //$data = [
+          //  ["AUTOR", "NÚMERO DE LIVROS"]
+        //];
+
+        //$cont = 1;
+        //foreach ($autores as $item) 
+        //{
+          //  $data[$cont] = [
+              //  $item->name, count($item->livro)
+           // ];
+
+           // $cont++;
+       // }
+
+        //dd($data);
+        //$data = json_encode($data);
+
+        //return view('autor.graph', compact(['data']));
+    }
 }
+
+
+

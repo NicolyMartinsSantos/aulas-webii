@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Autor;
 use App\Models\Autores;
 use App\Models\Livro;
 
@@ -42,7 +41,7 @@ class LivroController extends Controller
         if (isset($autor)) {
             $livro = new Livro();
             $livro->titulo = mb_strtoupper($request->titulo, "UTF-8");
-            $livro->descricao = $request->descricao;
+            $livro->description = $request->description;
             $livro->autor()->associate($autor);
             $livro->save();
 
@@ -98,11 +97,11 @@ class LivroController extends Controller
     public function update(Request $request, $id)
     {
         $livro = Livro::find($id);
-        $autor = Autores::find($request->autor_id);
+        $autor = Autores::find($request->autor);
 
         if (isset($autor) && isset($livro)) {
             $livro->titulo = mb_strtoupper($request->titulo, "UTF-8");
-            $livro->descrição = $request->descrição;
+            $livro->description = $request->description;
             $livro->autor()->associate($autor);
             $livro->save();
 
