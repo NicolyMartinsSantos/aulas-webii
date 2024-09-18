@@ -8,6 +8,7 @@
 <input type="text" name="titulo" class="form-control" value="{{ $livro->nome }}" disabled />
 <label class="mt-3">Description</label>
 <input type="text" name="description" class="form-control" value="{{ $livro->description }}" disabled />
+<p class="card-text"><b>Autor: </b>{{$livro->autor->nome}}</p>
 
 
 <a href="{{ route('livro.index') }}" class="btn btn-secondary mt-1">

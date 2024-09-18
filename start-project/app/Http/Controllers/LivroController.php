@@ -22,7 +22,8 @@ class LivroController extends Controller
      */
     public function create()
     {
-        return view('livro.create');
+        $autor = Autores::orderBy('nome')->get();
+        return view('livro.create', compact(['autor']));
         // Obtém todos os autores para preencher o formulário de criação
        // $autores = Autores::orderBy('titulo')->get();
       //  return view('livro.create', compact('autores'));
