@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::resource('/autor', 'App\Http\Controllers\AutorController')->middleware(['auth']);
 Route::resource('/livro', 'App\Http\Controllers\LivroController');
 Route::get('/graph/autor', 'App\Http\Controllers\AutorController@graph')->name('autor.graph');
+Route::get('/report/autores/{autores_id}', 'App\Http\Controllers\AutorController@report')->name('autor.report');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

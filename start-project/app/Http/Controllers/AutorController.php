@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Livro;
 use Illuminate\Http\Request;
 use App\Models\Autores;
+use Dompdf\Dompdf;
+
 
 class AutorController extends Controller
 {
@@ -86,7 +88,7 @@ class AutorController extends Controller
         $autor = Autores::find($id);
 
         if(isset($autor)){
-            return view('autor.edit', compact(['autor']));
+            return view('autor.edit',compact(['autor']));
         }
 
         return redirect()->route('autor.index')->with('error', 'Autor não encontrado.');
@@ -143,19 +145,17 @@ class AutorController extends Controller
 
     public function graph()
     {
-      //  $autores = Autor::with('livro')->orderBy('nome')->get();
-        return "BAHHHHH";
-
+        //$autores = Autores::with('livros')->orderBy('nome')->get();
         //$data = [
           //  ["AUTOR", "NÚMERO DE LIVROS"]
         //];
-
+        return "BAH, SOCORRO";
         //$cont = 1;
         //foreach ($autores as $item) 
         //{
           //  $data[$cont] = [
-              //  $item->name, count($item->livro)
-           // ];
+            //   $item->nome, count($item->livros)
+            //];
 
            // $cont++;
        // }
@@ -163,9 +163,17 @@ class AutorController extends Controller
         //dd($data);
         //$data = json_encode($data);
 
-        //return view('autor.graph', compact(['data']));
+       // return view('autor.graph', compact(['data']));
+    }
+
+    public function report($id)
+    {
+        $livros = Livro::where('autores_id', $id)->get();
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml(view('autor.report', compact('livros')));
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+        $dompdf->stream("relatorio-horas-turma.pdf", array("Attachment" => false));
     }
 }
-
-
-

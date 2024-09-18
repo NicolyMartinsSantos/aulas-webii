@@ -43,7 +43,8 @@ class LivroController extends Controller
             $livro = new Livro();
             $livro->titulo = mb_strtoupper($request->titulo, "UTF-8");
             $livro->description = $request->description;
-            $livro->autor()->associate($autor);
+            $livro->autores_id = $request->autores_id;
+            $livro->autores()->associate($autor);
             $livro->save();
 
 
@@ -61,7 +62,9 @@ class LivroController extends Controller
      */
     public function show($id)
     {
-        $livro = Livro::find($id);
+        //$livro = Livro::find($id);
+
+        $livro = Livro::with('autores')->find($id); //
 
         if (isset($livro)) {
             return view('livro.show', compact('livro'));
@@ -103,7 +106,7 @@ class LivroController extends Controller
         if (isset($autor) && isset($livro)) {
             $livro->titulo = mb_strtoupper($request->titulo, "UTF-8");
             $livro->description = $request->description;
-            $livro->autor()->associate($autor);
+            //$livro->autores()->associate($autor);
             $livro->save();
 
             return redirect()->route('livro.index');

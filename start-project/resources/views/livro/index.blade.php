@@ -15,7 +15,6 @@
         <th>ID</th>
         <th>TITULO</th>
         <th>DESCRIÇÃO</th>
-        <th>SLA</th>
         <th>ACTIONS</th>
       
 
@@ -27,7 +26,7 @@
         <tr>
             <td>{{$item->id}}</td>
             <td>{{$item->titulo}}</td>
-            <td>{{$item->descrição}}</td>
+            <td>{{$item->description}}</td>
             
             <td>
             <a href="{{route('livro.show', $item->id)}}" class="btn btn-info">
